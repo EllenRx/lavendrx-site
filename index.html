@@ -3,441 +3,538 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LavendrX — AI Solutions for Healthcare & Life Sciences</title>
-  <meta name="description" content="LavendrX delivers AI-powered clinical data extraction, chart review automation, and patient-reported outcomes platforms for healthcare organizations and research institutions.">
+  <title>LavendrX — Healthcare AI Consulting & Development</title>
+  <meta name="description" content="LavendrX is a healthcare AI consultancy helping providers, research institutions, and life sciences organizations unlock clinical data with NLP, machine learning, and intelligent automation.">
+  <meta property="og:title" content="LavendrX — Healthcare AI Consulting & Development">
+  <meta property="og:description" content="AI strategy, clinical NLP, and custom solutions for healthcare organizations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lavendrx.com">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #4A2D8B;
-      --primary-light: #6B4FB0;
-      --primary-dark: #3A1F6E;
-      --accent: #7C5CBF;
-      --surface: #FAFAFA;
-      --surface-alt: #F3F0F8;
+      --primary: #6B5CAE;
+      --primary-dark: #504087;
+      --primary-light: #8B7DC8;
+      --accent: #9B8FD0;
+      --bg: #FFFFFF;
+      --bg-alt: #F7F5FB;
+      --bg-dark: #1C1530;
       --text: #1A1A2E;
-      --text-secondary: #555570;
+      --text-muted: #5A5775;
+      --text-light: #8A84A0;
       --border: #E8E4F0;
-      --white: #FFFFFF;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--text);
-      background: var(--white);
+      background: var(--bg);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* NAV */
+    .serif { font-family: 'Source Serif 4', Georgia, serif; }
+
+    /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
     }
     .nav-inner {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1140px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center;
-      height: 64px;
+      height: 68px; padding: 0 2rem;
     }
-    .logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; color: var(--primary);
-      text-decoration: none; letter-spacing: -0.02em;
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; align-items: center; }
     .nav-links a {
-      text-decoration: none; color: var(--text-secondary);
-      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.875rem; font-weight: 500;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--primary); }
-    .nav-cta {
-      background: var(--primary); color: var(--white) !important;
-      padding: 0.5rem 1.25rem; border-radius: 6px;
-      font-weight: 600 !important;
-      transition: background 0.2s;
+    .btn {
+      display: inline-block; text-decoration: none;
+      font-weight: 600; font-size: 0.875rem;
+      border-radius: 8px; transition: all 0.2s;
     }
-    .nav-cta:hover { background: var(--primary-dark); }
+    .btn-primary {
+      background: var(--primary); color: #fff;
+      padding: 0.55rem 1.35rem;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-large {
+      padding: 0.85rem 2rem; font-size: 0.95rem;
+    }
+    .btn-outline {
+      border: 1.5px solid var(--primary); color: var(--primary);
+      padding: 0.8rem 1.85rem;
+    }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+    .btn-white {
+      background: #fff; color: var(--primary);
+      padding: 0.85rem 2rem;
+    }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 
-    /* HERO */
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); margin: 5px 0; transition: 0.3s; }
+
+    /* ─── HERO ─── */
     .hero {
-      padding: 10rem 2rem 6rem;
-      background: linear-gradient(160deg, var(--white) 0%, var(--surface-alt) 50%, var(--white) 100%);
+      padding: 11rem 2rem 6rem;
       text-align: center;
+      background: linear-gradient(170deg, #fff 0%, var(--bg-alt) 40%, #fff 100%);
+      position: relative;
+      overflow: hidden;
     }
-    .hero-badge {
-      display: inline-block;
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.5rem;
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(107,92,174,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      padding: 0.4rem 1.1rem; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--primary); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 2rem;
     }
     .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.5rem, 5vw, 3.75rem);
-      line-height: 1.15;
-      color: var(--text);
-      max-width: 800px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(2.4rem, 4.8vw, 3.5rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--text); max-width: 780px;
       margin: 0 auto 1.5rem;
     }
     .hero p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 620px;
-      margin: 0 auto 2.5rem;
+      font-size: 1.15rem; color: var(--text-muted);
+      max-width: 600px; margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── SECTION DEFAULTS ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--primary); margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700; line-height: 1.25;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--text-muted);
+      max-width: 580px; margin-bottom: 3rem;
       line-height: 1.7;
     }
-    .hero-cta {
-      display: inline-block;
-      background: var(--primary);
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.9rem 2.25rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .hero-cta:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
-    /* SECTION */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--primary);
-      margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.25rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-    .section-subtitle {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin-bottom: 3rem;
-    }
-
-    /* CAPABILITIES GRID */
-    .capabilities { background: var(--surface); }
-    .cap-grid {
+    /* ─── SERVICES ─── */
+    .services { background: var(--bg-alt); }
+    .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
     }
-    .cap-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .cap-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 4px 24px rgba(74,45,139,0.08);
-    }
-    .cap-icon {
-      width: 44px; height: 44px;
-      background: var(--surface-alt);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1.3rem;
-    }
-    .cap-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .cap-card p {
-      color: var(--text-secondary);
-      font-size: 0.925rem;
-      line-height: 1.65;
-    }
-
-    /* USE CASES */
-    .use-cases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    .use-case {
-      border-left: 3px solid var(--primary);
-      padding-left: 1.5rem;
-    }
-    .use-case h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .use-case p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.65;
-    }
-
-    /* PROCESS */
-    .process { background: var(--surface); }
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      counter-reset: step;
-    }
-    .step {
+    .service-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem 1.75rem;
+      transition: border-color 0.2s, box-shadow 0.25s;
       position: relative;
-      padding-top: 2.5rem;
     }
-    .step::before {
-      content: counter(step);
-      counter-increment: step;
-      position: absolute; top: 0; left: 0;
-      width: 36px; height: 36px;
-      background: var(--primary);
-      color: var(--white);
-      border-radius: 50%;
+    .service-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 28px rgba(107,92,174,0.1);
+    }
+    .service-card .icon {
+      width: 42px; height: 42px;
+      background: var(--bg-alt); border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 1.25rem; font-size: 1.2rem;
     }
-    .step h3 {
-      font-size: 1rem; font-weight: 600;
-      margin-bottom: 0.5rem;
+    .service-card h3 {
+      font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 0.6rem; color: var(--text);
     }
-    .step p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.7;
     }
 
-    /* DIFFERENTIATORS */
-    .diff-grid {
+    /* ─── EXPERTISE AREAS ─── */
+    .expertise-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
     }
-    .diff-item {
+    .expertise-item {
+      display: flex; gap: 1.25rem;
       padding: 1.5rem;
-      background: var(--surface-alt);
+      background: var(--bg-alt);
       border-radius: 10px;
     }
-    .diff-item h3 {
+    .expertise-item .num {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.75rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+      flex-shrink: 0; width: 36px;
+    }
+    .expertise-item h3 {
       font-size: 1rem; font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .expertise-item p {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── INDUSTRIES ─── */
+    .industries { background: var(--bg-alt); }
+    .industry-tags {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .tag {
+      padding: 0.6rem 1.25rem;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 50px; font-size: 0.85rem;
+      font-weight: 500; color: var(--text);
+    }
+
+    /* ─── APPROACH ─── */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      counter-reset: approach;
+    }
+    .approach-step {
+      position: relative;
+      padding: 2rem 1.25rem 1.25rem;
+      background: var(--bg-alt);
+      border-radius: 10px;
+    }
+    .approach-step .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--primary); color: #fff;
+      border-radius: 50%; font-weight: 700;
+      font-size: 0.85rem; margin-bottom: 1rem;
+    }
+    .approach-step h3 {
+      font-size: 0.95rem; font-weight: 600;
       margin-bottom: 0.5rem;
     }
-    .diff-item p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
+    .approach-step p {
+      font-size: 0.85rem; color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* CONTACT */
-    .contact {
-      background: var(--primary);
-      color: var(--white);
-      text-align: center;
+    /* ─── WHY US ─── */
+    .why { background: var(--bg-alt); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
-    .contact .section-label { color: rgba(255,255,255,0.6); }
-    .contact .section-title { color: var(--white); }
-    .contact p { color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 2rem; }
-    .contact-btn {
-      display: inline-block;
-      background: var(--white);
-      color: var(--primary);
-      text-decoration: none;
-      padding: 0.9rem 2.25rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: transform 0.15s;
+    .why-card {
+      padding: 1.75rem;
+      border-left: 3px solid var(--primary);
+      background: #fff;
+      border-radius: 0 10px 10px 0;
     }
-    .contact-btn:hover { transform: translateY(-1px); }
+    .why-card h3 {
+      font-size: 1rem; font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .why-card p {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.65;
+    }
 
-    /* FOOTER */
+    /* ─── CTA ─── */
+    .cta {
+      background: var(--bg-dark);
+      color: #fff; text-align: center;
+      padding: 5rem 2rem;
+    }
+    .cta .eyebrow { color: var(--accent); }
+    .cta .section-heading { color: #fff; }
+    .cta p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 2rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─── */
     footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
+      padding: 2.5rem 2rem;
       border-top: 1px solid var(--border);
+      text-align: center;
     }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-inner p {
+      font-size: 0.8rem; color: var(--text-light);
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.8rem; color: var(--text-light);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--primary); }
 
-    /* MOBILE */
-    @media (max-width: 768px) {
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .approach-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
       .nav-links { display: none; }
-      .hero { padding: 8rem 1.5rem 4rem; }
-      section { padding: 3.5rem 1.5rem; }
-      .cap-grid, .use-cases-grid, .process-steps, .diff-grid {
-        grid-template-columns: 1fr;
-      }
+      .hamburger { display: block; }
+      .hero { padding: 8rem 1.5rem 3.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .service-grid,
+      .expertise-grid,
+      .approach-grid,
+      .why-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">LavendrX</a>
+    <a href="#" class="nav-logo">
+      <img src="logo.jpg" alt="LavendrX">
+    </a>
     <ul class="nav-links">
-      <li><a href="#capabilities">Capabilities</a></li>
-      <li><a href="#use-cases">Use Cases</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#contact" class="btn btn-primary">Contact Us</a></li>
     </ul>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
-  <div class="hero-badge">Healthcare &middot; Life Sciences &middot; AI</div>
-  <h1>AI-Powered Clinical Data Intelligence</h1>
-  <p>We build custom AI systems that extract structured insights from clinical data, automate chart review, and capture patient-reported outcomes — so research teams can focus on discovery, not data entry.</p>
-  <a href="#contact" class="hero-cta">Schedule a Consultation</a>
+  <div class="hero-eyebrow">AI Consulting &middot; Healthcare &middot; Life Sciences</div>
+  <h1>Intelligent Solutions for Healthcare Data</h1>
+  <p>We help healthcare organizations and research institutions harness AI to transform clinical data into structured, actionable intelligence&mdash;from EMR extraction and chart review to patient-reported outcomes and real-world evidence.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn btn-primary btn-large">Schedule a Consultation</a>
+    <a href="#services" class="btn btn-outline btn-large">Our Services</a>
+  </div>
 </header>
 
-<section class="capabilities" id="capabilities">
+<!-- SERVICES -->
+<section class="services" id="services">
   <div class="container">
-    <div class="section-label">Capabilities</div>
-    <div class="section-title">What We Build</div>
-    <div class="section-subtitle">End-to-end AI solutions for healthcare organizations and research institutions.</div>
-    <div class="cap-grid">
-      <div class="cap-card">
-        <div class="cap-icon">&#x1F4CB;</div>
-        <h3>Clinical Data Extraction</h3>
-        <p>NLP-powered pipelines that transform unstructured EMR data — physician notes, lab reports, imaging results — into structured, research-ready datasets. Purpose-built for retrospective chart review and clinical research.</p>
+    <div class="eyebrow">Services</div>
+    <h2 class="section-heading">Healthcare AI Consulting & Development</h2>
+    <div class="section-sub">End-to-end AI strategy, implementation, and support tailored to the complexities of healthcare data, compliance, and clinical workflows.</div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">&#x1F4CB;</div>
+        <h3>Clinical NLP & Data Extraction</h3>
+        <p>Transform unstructured clinical text&mdash;physician notes, pathology reports, discharge summaries&mdash;into structured, research-ready datasets using advanced NLP and large language models. Purpose-built for medical entity recognition, clinical coding, and longitudinal data capture.</p>
       </div>
-      <div class="cap-card">
-        <div class="cap-icon">&#x1F4CA;</div>
-        <h3>Patient-Reported Outcomes</h3>
-        <p>Digital platforms for capturing PROs using validated instruments (PROMIS, SF-36, disease-specific PROMs). Automated collection, longitudinal tracking, and integration with existing clinical workflows.</p>
-      </div>
-      <div class="cap-card">
-        <div class="cap-icon">&#x1F50D;</div>
+      <div class="service-card">
+        <div class="icon">&#x1F50D;</div>
         <h3>Chart Review Automation</h3>
-        <p>AI systems that read and abstract medical charts at scale — extracting diagnoses, treatment timelines, adverse events, and clinical endpoints from free-text notes with human-level accuracy.</p>
+        <p>Automate retrospective chart abstraction at scale. Our AI systems extract diagnoses, treatment timelines, adverse events, and clinical endpoints from free-text documentation&mdash;reducing weeks of manual review to hours while maintaining research-grade accuracy.</p>
       </div>
-      <div class="cap-card">
-        <div class="cap-icon">&#x1F9EC;</div>
+      <div class="service-card">
+        <div class="icon">&#x1F4CA;</div>
+        <h3>Patient-Reported Outcomes</h3>
+        <p>Design and deploy digital ePRO collection platforms using validated instruments (PROMIS, SF-36, disease-specific PROMs). Automated patient engagement, adaptive survey logic, longitudinal tracking, and integration with existing EHR systems.</p>
+      </div>
+      <div class="service-card">
+        <div class="icon">&#x1F9EC;</div>
         <h3>Real-World Evidence</h3>
-        <p>Transform EHR data into real-world evidence for regulatory submissions, outcomes research, and value-based care initiatives. HIPAA-compliant de-identification and audit-ready data lineage.</p>
+        <p>Generate regulatory-grade real-world evidence from EHR, claims, and registry data. We build de-identified data pipelines with full audit trails for observational studies, post-market surveillance, and value-based care reporting.</p>
       </div>
-      <div class="cap-card">
-        <div class="cap-icon">&#x2699;&#xFE0F;</div>
-        <h3>Research Data Engineering</h3>
-        <p>Custom data models, ETL pipelines, and analytics dashboards tailored to study protocols. We bridge the gap between raw clinical data and research-ready infrastructure.</p>
+      <div class="service-card">
+        <div class="icon">&#x2699;&#xFE0F;</div>
+        <h3>AI Strategy & Roadmapping</h3>
+        <p>Assess organizational readiness, identify high-impact AI use cases, and develop phased implementation roadmaps aligned with clinical, operational, and research objectives. Technology-agnostic guidance grounded in healthcare domain expertise.</p>
       </div>
-      <div class="cap-card">
-        <div class="cap-icon">&#x1F512;</div>
-        <h3>Compliance & De-Identification</h3>
-        <p>Automated PHI detection and de-identification pipelines that satisfy HIPAA Safe Harbor and Expert Determination methods. Full audit trails for IRB and regulatory review.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="use-cases">
-  <div class="container">
-    <div class="section-label">Use Cases</div>
-    <div class="section-title">Built for Clinical Research</div>
-    <div class="section-subtitle">Solutions designed around how research teams actually work.</div>
-    <div class="use-cases-grid">
-      <div class="use-case">
-        <h3>Retrospective Chart Review</h3>
-        <p>Replace manual chart abstraction with AI that reads clinical notes, extracts variables per your study protocol, and flags edge cases for human review. Reduce weeks of work to hours.</p>
-      </div>
-      <div class="use-case">
-        <h3>Registry & Cohort Building</h3>
-        <p>Identify patient cohorts from EMR data using clinical criteria — diagnoses, lab values, treatment history, comorbidities. Build and maintain disease-specific registries at scale.</p>
-      </div>
-      <div class="use-case">
-        <h3>Outcomes Measurement Programs</h3>
-        <p>Design and deploy ePRO collection workflows integrated with clinic visits. Automated patient outreach, adaptive survey logic, and real-time dashboards for care teams and researchers.</p>
-      </div>
-      <div class="use-case">
-        <h3>Quality Improvement & Benchmarking</h3>
-        <p>Extract quality metrics from clinical documentation for performance benchmarking, MIPS reporting, and continuous improvement initiatives across departments or health systems.</p>
+      <div class="service-card">
+        <div class="icon">&#x1F512;</div>
+        <h3>Data Engineering & Compliance</h3>
+        <p>Build HIPAA-compliant data infrastructure&mdash;from ETL pipelines and data warehousing to automated PHI de-identification (Safe Harbor and Expert Determination). Full audit-ready data lineage for IRB and regulatory review.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="process" id="process">
+<!-- EXPERTISE -->
+<section id="expertise">
   <div class="container">
-    <div class="section-label">How We Work</div>
-    <div class="section-title">From Problem to Production</div>
-    <div class="section-subtitle">A structured approach to deploying clinical AI responsibly.</div>
-    <div class="process-steps">
-      <div class="step">
-        <h3>Discovery</h3>
-        <p>We map your data landscape, research objectives, and compliance requirements. No AI is deployed before we understand the clinical context.</p>
+    <div class="eyebrow">Domain Expertise</div>
+    <h2 class="section-heading">Deep Healthcare Knowledge, Applied</h2>
+    <div class="section-sub">Our team combines clinical informatics, data science, and healthcare operations experience to deliver AI solutions that work in practice&mdash;not just in theory.</div>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <div class="num">01</div>
+        <div>
+          <h3>EMR Data Intelligence</h3>
+          <p>Expertise in extracting structured data from Epic, Cerner, Athena, and legacy EHR systems. We handle the full pipeline from raw clinical documentation to analysis-ready datasets.</p>
+        </div>
       </div>
-      <div class="step">
-        <h3>Design</h3>
-        <p>Custom data models and extraction schemas aligned to your study protocol or operational needs. Validated against clinician-reviewed ground truth.</p>
+      <div class="expertise-item">
+        <div class="num">02</div>
+        <div>
+          <h3>Clinical Research Support</h3>
+          <p>Cohort identification, registry building, and automated case report form population. We help research teams design protocols that leverage AI from study inception through publication.</p>
+        </div>
       </div>
-      <div class="step">
+      <div class="expertise-item">
+        <div class="num">03</div>
+        <div>
+          <h3>Predictive Analytics</h3>
+          <p>Custom machine learning models for clinical risk stratification, readmission prediction, treatment response modeling, and population health management&mdash;validated against real-world clinical data.</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <div class="num">04</div>
+        <div>
+          <h3>Workflow Automation</h3>
+          <p>Intelligent automation for prior authorization, clinical documentation improvement, quality measure extraction, and administrative tasks that consume clinician time without improving care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="container">
+    <div class="eyebrow">Who We Work With</div>
+    <h2 class="section-heading">Across the Healthcare Ecosystem</h2>
+    <div class="section-sub">We partner with organizations at every stage&mdash;from academic research centers to health systems to life sciences companies.</div>
+    <div class="industry-tags">
+      <span class="tag">Academic Medical Centers</span>
+      <span class="tag">Research Institutions</span>
+      <span class="tag">Health Systems & Hospitals</span>
+      <span class="tag">Specialty Practices</span>
+      <span class="tag">Pharmaceutical Companies</span>
+      <span class="tag">Biotech & Life Sciences</span>
+      <span class="tag">Clinical Research Organizations</span>
+      <span class="tag">Payers & Managed Care</span>
+      <span class="tag">Digital Health Companies</span>
+      <span class="tag">Public Health Agencies</span>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="container">
+    <div class="eyebrow">Our Approach</div>
+    <h2 class="section-heading">From Discovery to Production</h2>
+    <div class="section-sub">A structured, transparent methodology for deploying clinical AI responsibly.</div>
+    <div class="approach-grid">
+      <div class="approach-step">
+        <div class="step-num">1</div>
+        <h3>Discovery & Assessment</h3>
+        <p>Map your data landscape, research objectives, compliance requirements, and existing infrastructure before any AI is designed or deployed.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">2</div>
+        <h3>Solution Design</h3>
+        <p>Custom data models, extraction schemas, and system architecture aligned to your specific use case&mdash;whether a retrospective study, quality initiative, or operational workflow.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">3</div>
         <h3>Build & Validate</h3>
-        <p>Iterative development with clinical team input. Precision and recall benchmarked against manual abstraction. Edge cases surfaced and resolved.</p>
+        <p>Iterative development with clinical team input. Precision and recall benchmarked against manual abstraction. Edge cases surfaced and resolved before deployment.</p>
       </div>
-      <div class="step">
-        <h3>Deploy & Support</h3>
-        <p>Production deployment within your infrastructure or a HIPAA-compliant cloud environment. Ongoing monitoring, model updates, and team training.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="why">
-  <div class="container">
-    <div class="section-label">Why LavendrX</div>
-    <div class="section-title">Built Different</div>
-    <div class="diff-grid">
-      <div class="diff-item">
-        <h3>Clinical Context First</h3>
-        <p>We don't just extract text — we understand clinical meaning. Our systems are built with domain expertise in immunology, oncology, rare disease, and specialty biologics.</p>
-      </div>
-      <div class="diff-item">
-        <h3>Research-Grade Accuracy</h3>
-        <p>Every pipeline is validated against clinician-reviewed data. We publish precision, recall, and inter-annotator agreement metrics — no black boxes.</p>
-      </div>
-      <div class="diff-item">
-        <h3>Your Infrastructure, Your Data</h3>
-        <p>Deploy on-premise or in your cloud. Patient data never leaves your control. Full audit trails for IRB and compliance review.</p>
-      </div>
-      <div class="diff-item">
-        <h3>Boutique, Not Bloated</h3>
-        <p>You work directly with senior engineers and clinical informaticists — not a sales team. Fast iterations, no enterprise overhead.</p>
+      <div class="approach-step">
+        <div class="step-num">4</div>
+        <h3>Deploy & Optimize</h3>
+        <p>Production deployment within your infrastructure or a HIPAA-compliant cloud environment. Ongoing monitoring, model refinement, and team training included.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
+<!-- WHY US -->
+<section class="why" id="why">
   <div class="container">
-    <div class="section-label">Get Started</div>
-    <div class="section-title">Let's Talk About Your Data</div>
-    <p>Whether you're planning a retrospective study, building an outcomes program, or looking to unlock your EMR data — we'd like to hear about it.</p>
-    <a href="mailto:hello@lavendrx.com" class="contact-btn">hello@lavendrx.com</a>
+    <div class="eyebrow">Why LavendrX</div>
+    <h2 class="section-heading">Independent. Clinical. Technical.</h2>
+    <div class="section-sub">We are consultants, not resellers. Our recommendations are technology-agnostic and driven entirely by what works for your organization.</div>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Healthcare-Native</h3>
+        <p>We are not a general-purpose AI shop that lists healthcare as one of twelve verticals. Healthcare and life sciences is all we do. Our team understands clinical workflows, regulatory frameworks, and the nuances of medical data.</p>
+      </div>
+      <div class="why-card">
+        <h3>Research-Grade Rigor</h3>
+        <p>Every pipeline we build is validated against clinician-reviewed ground truth. We report precision, recall, and inter-annotator agreement metrics. No black boxes, no hand-waving about accuracy.</p>
+      </div>
+      <div class="why-card">
+        <h3>Your Data, Your Infrastructure</h3>
+        <p>We deploy on-premise, in your cloud, or in a HIPAA-compliant managed environment. Patient data never leaves your control. Full audit trails for IRB and compliance review.</p>
+      </div>
+      <div class="why-card">
+        <h3>Boutique Engagement Model</h3>
+        <p>You work directly with senior engineers and clinical informaticists&mdash;not a sales team that hands you off to juniors. Fast iterations, honest guidance, zero enterprise bloat.</p>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="eyebrow">Get Started</div>
+    <h2 class="section-heading">Ready to Unlock Your Clinical Data?</h2>
+    <p>Whether you are planning a research study, building an outcomes program, or exploring how AI can transform your clinical operations&mdash;we would like to hear about it.</p>
+    <div class="cta-btns">
+      <a href="mailto:lauren@lavendrx.com" class="btn btn-white btn-large">lauren@lavendrx.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 LavendrX LLC. All rights reserved.</p>
+  <div class="footer-inner">
+    <p>&copy; 2026 LavendrX LLC. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="mailto:lauren@lavendrx.com">Contact</a>
+    </div>
+  </div>
 </footer>
 
 </body>
