@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LavendrX</title>
-  <meta name="description" content="LavendrX — Healthcare AI consulting and advisory.">
+  <title>LavendrX — Healthcare AI Consulting</title>
+  <meta name="description" content="LavendrX is a healthcare AI consulting firm helping health systems, life sciences companies, and healthcare organizations design, build, and deploy AI solutions.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -21,138 +21,228 @@
       overflow-x: hidden;
     }
 
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(253,253,253,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .nav.scrolled { border-bottom-color: #eee; }
+    .nav-logo {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: #6B5CAE; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #888; text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #6B5CAE; }
+    .nav-cta {
+      font-size: 0.6rem !important; font-weight: 500 !important;
+      color: #fff !important; background: #6B5CAE;
+      padding: 0.5rem 1.4rem; border-radius: 3px;
+      transition: background 0.3s !important;
+    }
+    .nav-cta:hover { background: #5a4b99 !important; color: #fff !important; }
+
     /* HERO */
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      padding: 2rem; position: relative;
+      padding: 6rem 2rem 4rem; text-align: center;
+      position: relative;
     }
     .hero-glow {
       position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(107,92,174,0.04) 0%, transparent 65%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(107,92,174,0.035) 0%, transparent 65%);
       border-radius: 50%; pointer-events: none;
     }
-    .logo-img { width: 140px; height: auto; margin-bottom: 0; }
-    .divider {
-      width: 40px; height: 1px;
-      background: linear-gradient(90deg, transparent, #ccc, transparent);
-      margin: 1.6rem auto;
+    .logo-img { width: 130px; height: auto; margin-bottom: 2.5rem; }
+    .hero h1 {
+      font-size: 2.4rem; font-weight: 300;
+      color: #1a1a2e; line-height: 1.3;
+      max-width: 680px; letter-spacing: -0.01em;
     }
-    .hero-tagline {
-      font-size: 0.68rem; font-weight: 300;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: #999;
+    .hero h1 strong { font-weight: 600; }
+    .hero-sub {
+      font-size: 0.92rem; font-weight: 300;
+      color: #777; line-height: 1.7;
+      max-width: 520px; margin-top: 1.8rem;
     }
-    .scroll-hint {
-      position: absolute; bottom: 2.5rem;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 0.5rem; opacity: 0.3;
-      transition: opacity 0.3s; cursor: pointer;
-      text-decoration: none;
-    }
-    .scroll-hint:hover { opacity: 0.6; }
-    .scroll-hint span {
-      font-size: 0.55rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: #999;
-    }
-    .scroll-arrow {
-      width: 1px; height: 24px;
-      background: linear-gradient(180deg, #999, transparent);
-      animation: pulse-down 2s ease-in-out infinite;
-    }
-    @keyframes pulse-down {
-      0%, 100% { opacity: 0.3; transform: translateY(0); }
-      50% { opacity: 0.8; transform: translateY(4px); }
-    }
-
-    /* NAV */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      padding: 1.5rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      opacity: 0; transition: opacity 0.4s ease;
-      background: rgba(253,253,253,0.9);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    }
-    .nav.visible { opacity: 1; }
-    .nav-logo {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.3em; text-transform: uppercase;
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: #6B5CAE; text-decoration: none;
+      border: 1px solid #6B5CAE;
+      padding: 0.75rem 2rem; border-radius: 3px;
+      transition: all 0.3s;
     }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      font-size: 0.6rem; font-weight: 400;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: #999; text-decoration: none; transition: color 0.3s;
-    }
-    .nav-links a:hover { color: #6B5CAE; }
+    .hero-cta:hover { background: #6B5CAE; color: #fff; }
 
     /* SECTIONS */
-    section {
-      padding: 6rem 2rem;
-      max-width: 720px; margin: 0 auto;
-    }
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
     .section-label {
-      font-size: 0.6rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: #6B5CAE; margin-bottom: 2.5rem;
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: #6B5CAE; margin-bottom: 1rem;
     }
-    .section-line {
-      width: 30px; height: 1px;
-      background: linear-gradient(90deg, #6B5CAE, transparent);
-      margin-bottom: 3rem;
+    .section-title {
+      font-size: 1.6rem; font-weight: 300;
+      color: #1a1a2e; line-height: 1.4;
+      max-width: 600px; margin-bottom: 3.5rem;
     }
 
-    /* CAPABILITIES */
-    .cap-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem 4rem;
+    /* PROBLEM */
+    .problem-section { background: #f8f7fb; }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
     }
-    .cap-item h3 {
+    .problem-text {
+      font-size: 0.88rem; font-weight: 300;
+      color: #555; line-height: 1.85;
+    }
+    .problem-stats {
+      display: flex; flex-direction: column; gap: 2rem;
+      justify-content: center;
+    }
+    .stat-item { border-left: 2px solid #6B5CAE; padding-left: 1.2rem; }
+    .stat-number {
+      font-size: 1.8rem; font-weight: 200; color: #6B5CAE;
+    }
+    .stat-label {
+      font-size: 0.72rem; font-weight: 400; color: #888;
+      margin-top: 0.2rem;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .service-card {
+      padding: 2rem 1.5rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      border-color: #d8d4e8;
+      box-shadow: 0 4px 20px rgba(107,92,174,0.06);
+    }
+    .service-icon {
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+      display: block;
+    }
+    .service-card h3 {
       font-size: 0.82rem; font-weight: 500;
-      color: #1a1a2e; margin-bottom: 0.6rem;
-      letter-spacing: 0.02em;
+      color: #1a1a2e; margin-bottom: 0.8rem;
+      letter-spacing: 0.01em;
     }
-    .cap-item p {
-      font-size: 0.78rem; font-weight: 300;
+    .service-card p {
+      font-size: 0.76rem; font-weight: 300;
       color: #777; line-height: 1.7;
     }
 
-    /* APPROACH */
-    .approach-text {
-      font-size: 0.88rem; font-weight: 300;
-      color: #555; line-height: 1.85;
-      max-width: 560px;
+    /* WHO WE WORK WITH */
+    .clients-section { background: #f8f7fb; }
+    .client-tags {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin-top: 2rem;
     }
-    .approach-text + .approach-text { margin-top: 1.5rem; }
+    .client-tag {
+      font-size: 0.68rem; font-weight: 400;
+      color: #666; padding: 0.5rem 1.2rem;
+      border: 1px solid #ddd; border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    /* APPROACH */
+    .approach-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; counter-reset: step;
+    }
+    .approach-step {
+      position: relative;
+      padding-top: 2.5rem;
+    }
+    .approach-step::before {
+      content: counter(step);
+      counter-increment: step;
+      position: absolute; top: 0;
+      font-size: 1.6rem; font-weight: 200;
+      color: #d8d4e8;
+    }
+    .approach-step h3 {
+      font-size: 0.78rem; font-weight: 500;
+      color: #1a1a2e; margin-bottom: 0.6rem;
+    }
+    .approach-step p {
+      font-size: 0.74rem; font-weight: 300;
+      color: #777; line-height: 1.65;
+    }
+
+    /* DIFFERENTIATORS */
+    .diff-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 4rem;
+    }
+    .diff-item h3 {
+      font-size: 0.78rem; font-weight: 500;
+      color: #1a1a2e; margin-bottom: 0.5rem;
+    }
+    .diff-item p {
+      font-size: 0.76rem; font-weight: 300;
+      color: #777; line-height: 1.7;
+    }
 
     /* CONTACT */
     .contact-section {
-      padding: 6rem 2rem;
-      max-width: 720px; margin: 0 auto;
+      text-align: center; padding: 6rem 2rem;
       border-top: 1px solid #eee;
     }
-    .contact-section .section-label { margin-bottom: 1.5rem; }
-    .contact-section a {
-      font-size: 0.82rem; font-weight: 400;
-      color: #777; text-decoration: none;
-      transition: color 0.3s;
+    .contact-section .section-label { margin-bottom: 1rem; }
+    .contact-headline {
+      font-size: 1.4rem; font-weight: 300;
+      color: #1a1a2e; margin-bottom: 2rem;
     }
-    .contact-section a:hover { color: #6B5CAE; }
+    .contact-email {
+      font-size: 0.88rem; font-weight: 400;
+      color: #6B5CAE; text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    .contact-email:hover { opacity: 0.7; }
 
     /* FOOTER */
     footer {
       padding: 2rem; text-align: center;
-      font-size: 0.6rem; color: #ccc;
+      font-size: 0.58rem; color: #ccc;
       letter-spacing: 0.05em;
     }
 
-    @media (max-width: 600px) {
-      .cap-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { display: none; }
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.5rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero h1 { font-size: 1.6rem; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .approach-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -161,75 +251,170 @@
 <div class="nav" id="nav">
   <a href="#" class="nav-logo">LavendrX</a>
   <div class="nav-links">
-    <a href="#capabilities">Capabilities</a>
+    <a href="#services">Services</a>
     <a href="#approach">Approach</a>
-    <a href="#contact">Contact</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
   </div>
 </div>
 
 <section class="hero">
   <div class="hero-glow"></div>
   <img src="logo.jpg" alt="LavendrX" class="logo-img">
-  <div class="divider"></div>
-  <div class="hero-tagline">Healthcare &middot; AI &middot; Advisory</div>
-  <a href="#capabilities" class="scroll-hint">
-    <span>Learn More</span>
-    <div class="scroll-arrow"></div>
-  </a>
+  <h1><strong>AI consulting</strong> for healthcare organizations</h1>
+  <p class="hero-sub">We help health systems, life sciences companies, and specialty practices design, implement, and scale AI solutions that improve outcomes and reduce operational burden.</p>
+  <a href="#contact" class="hero-cta">Start a Conversation</a>
 </section>
 
-<section id="capabilities">
-  <div class="section-label">Capabilities</div>
-  <div class="section-line"></div>
-  <div class="cap-grid">
-    <div class="cap-item">
-      <h3>AI Strategy and Implementation</h3>
-      <p>Organizational readiness assessment, use case identification, and phased implementation roadmaps for AI adoption across clinical and operational settings.</p>
-    </div>
-    <div class="cap-item">
-      <h3>Clinical Data Intelligence</h3>
-      <p>Structured data extraction from unstructured clinical text. Entity recognition, relation extraction, and code mapping across EHR systems and medical documentation.</p>
-    </div>
-    <div class="cap-item">
-      <h3>Workflow Automation</h3>
-      <p>Intelligent automation for chart review, prior authorization, clinical documentation improvement, and administrative processes that consume clinician time.</p>
-    </div>
-    <div class="cap-item">
-      <h3>Patient-Reported Outcomes</h3>
-      <p>Digital ePRO collection platforms using validated instruments, adaptive survey logic, longitudinal tracking, and integration with existing clinical infrastructure.</p>
-    </div>
-    <div class="cap-item">
-      <h3>Real-World Evidence</h3>
-      <p>Data pipelines for observational studies, post-market surveillance, and value-based care reporting. De-identified datasets with audit-ready lineage.</p>
-    </div>
-    <div class="cap-item">
-      <h3>Compliance and Data Engineering</h3>
-      <p>HIPAA-compliant infrastructure, automated PHI de-identification, clinical data warehousing, and audit-ready pipelines for regulatory and IRB review.</p>
+<section class="problem-section" id="problem">
+  <div class="section-inner">
+    <div class="section-label">The Challenge</div>
+    <div class="problem-grid">
+      <div>
+        <p class="problem-text">Healthcare organizations are under pressure to adopt AI, but most lack the clinical domain expertise, technical infrastructure, and regulatory clarity to do it well.</p>
+        <p class="problem-text" style="margin-top:1.2rem;">The result is fragmented pilots that never scale, vendor lock-in to black-box platforms, and AI initiatives that create more work instead of less.</p>
+        <p class="problem-text" style="margin-top:1.2rem;">We bridge the gap between what AI can do and what your organization actually needs.</p>
+      </div>
+      <div class="problem-stats">
+        <div class="stat-item">
+          <div class="stat-number">73M</div>
+          <div class="stat-label">insurance claim denials per year in the US</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">40%</div>
+          <div class="stat-label">of clinician time spent on administrative tasks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">&lt;5%</div>
+          <div class="stat-label">of health systems have scaled AI beyond pilots</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="approach">
-  <div class="section-label">Approach</div>
-  <div class="section-line"></div>
-  <p class="approach-text">We work at the intersection of clinical domain expertise and modern AI. Our recommendations are technology-agnostic and driven by what works for your organization, not by what we sell.</p>
-  <p class="approach-text">Every engagement starts with understanding your data, your workflows, and your objectives. We validate against clinician-reviewed ground truth. We report precision and recall. No black boxes.</p>
-  <p class="approach-text">We work with academic medical centers, research institutions, health systems, specialty practices, pharmaceutical and life sciences companies, payers, and digital health organizations.</p>
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">Services</div>
+    <div class="section-title">End-to-end AI consulting across the healthcare enterprise</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">◎</span>
+        <h3>AI Strategy & Roadmapping</h3>
+        <p>Organizational readiness assessments, use case prioritization, vendor evaluation, and phased implementation plans tailored to your clinical and business objectives.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⊞</span>
+        <h3>AI Agent Design & Deployment</h3>
+        <p>Custom AI agents for clinical workflows, patient engagement, prior authorization, scheduling, triage, and operational automation — designed for your EHR and IT environment.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⬡</span>
+        <h3>Clinical Data Intelligence</h3>
+        <p>Structured data extraction from unstructured clinical text. NLP pipelines for chart review, entity recognition, code mapping, and clinical documentation improvement.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◈</span>
+        <h3>Workflow Automation</h3>
+        <p>Intelligent automation for prior authorization, appeals, utilization management, revenue cycle, and administrative processes that consume clinician and staff time.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⊡</span>
+        <h3>Research & Real-World Evidence</h3>
+        <p>AI-powered data pipelines for clinical research, patient-reported outcomes, post-market surveillance, and observational studies with audit-ready data lineage.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">◇</span>
+        <h3>Compliance & Infrastructure</h3>
+        <p>HIPAA-compliant AI architecture, automated PHI de-identification, data governance frameworks, and regulatory-ready documentation for IRB and audit review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach" style="background:#f8f7fb;">
+  <div class="section-inner">
+    <div class="section-label">Approach</div>
+    <div class="section-title">From assessment to production in weeks, not quarters</div>
+    <div class="approach-grid">
+      <div class="approach-step">
+        <h3>Discovery</h3>
+        <p>We map your workflows, data landscape, and pain points. Every engagement starts with understanding your organization — not selling a solution.</p>
+      </div>
+      <div class="approach-step">
+        <h3>Design</h3>
+        <p>Technology-agnostic recommendations built around your existing infrastructure. We design what works for you, not what's easiest for us.</p>
+      </div>
+      <div class="approach-step">
+        <h3>Build</h3>
+        <p>Rapid prototyping with clinician-validated ground truth. We measure precision and recall, not just accuracy. No black boxes.</p>
+      </div>
+      <div class="approach-step">
+        <h3>Scale</h3>
+        <p>Production deployment, monitoring, and iteration. We stay through go-live and beyond to ensure adoption and measurable ROI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-label">Why LavendrX</div>
+    <div class="section-title">Clinical depth meets technical execution</div>
+    <div class="diff-grid">
+      <div class="diff-item">
+        <h3>Healthcare-native</h3>
+        <p>Our team brings deep domain expertise in specialty pharmacy, biologics, payer policy, and clinical operations — not just generic AI knowledge applied to healthcare.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Vendor-agnostic</h3>
+        <p>We recommend what works. No platform lock-in, no proprietary dependencies. Your AI strategy should outlast any single vendor relationship.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Execution-focused</h3>
+        <p>We don't deliver slide decks and walk away. We build, deploy, and iterate alongside your team until the solution is live and performing.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Compliance-first</h3>
+        <p>Every solution is designed with HIPAA, data governance, and regulatory requirements built in from day one — not bolted on after the fact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clients-section" id="clients">
+  <div class="section-inner">
+    <div class="section-label">Who We Work With</div>
+    <div class="section-title">Trusted by organizations across the healthcare ecosystem</div>
+    <p class="problem-text">We work with healthcare executives, clinical leaders, and innovation teams who are ready to move beyond pilots and make AI a core part of how they deliver care and run their organizations.</p>
+    <div class="client-tags">
+      <span class="client-tag">Health Systems</span>
+      <span class="client-tag">Academic Medical Centers</span>
+      <span class="client-tag">Specialty Practices</span>
+      <span class="client-tag">Pharmaceutical Companies</span>
+      <span class="client-tag">Life Sciences</span>
+      <span class="client-tag">Payers & Health Plans</span>
+      <span class="client-tag">Digital Health Companies</span>
+      <span class="client-tag">Research Institutions</span>
+      <span class="client-tag">Revenue Cycle Organizations</span>
+    </div>
+  </div>
 </section>
 
 <div class="contact-section" id="contact">
   <div class="section-label">Contact</div>
-  <a href="mailto:lauren@lavendrx.com">lauren@lavendrx.com</a>
+  <p class="contact-headline">Ready to put AI to work for your organization?</p>
+  <a href="mailto:lauren@lavendrx.com" class="contact-email">lauren@lavendrx.com</a>
 </div>
 
 <footer>
-  &copy; 2026 LavendrX LLC
+  &copy; 2026 LavendrX LLC &middot; All rights reserved.
 </footer>
 
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.7);
+    nav.classList.toggle('scrolled', window.scrollY > 20);
   });
 </script>
 
