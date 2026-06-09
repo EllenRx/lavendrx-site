@@ -4,253 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LavendrX</title>
-  <meta name="description" content="Healthcare AI consulting. EMR data extraction, chart review automation, patient-reported outcomes.">
+  <meta name="description" content="LavendrX — Healthcare AI consulting and advisory.">
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --text: #1a1a1a;
-      --text-mid: #444;
-      --text-light: #777;
-      --border: #e0e0e0;
-      --bg: #fff;
-      --purple: #6B5CAE;
-    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--text); background: var(--bg);
+      background: #fdfdfd;
+      color: #1a1a2e;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* LANDING */
-    .landing {
+    /* HERO */
+    .hero {
       min-height: 100vh;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      position: relative;
+      justify-content: center; align-items: center;
+      padding: 2rem; position: relative;
     }
-    .landing img {
-      width: 180px; height: auto;
-    }
-    .landing .tagline {
-      margin-top: 1.5rem;
-      font-size: 0.82rem;
-      font-weight: 400;
-      color: var(--text-light);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .landing .contact {
-      margin-top: 2.5rem;
-    }
-    .landing .contact a {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .landing .contact a:hover {
-      color: var(--text);
-      border-color: var(--text);
-    }
-    .footer-line {
+    .hero-glow {
       position: absolute;
-      bottom: 2rem;
-      font-size: 0.7rem;
-      color: #bbb;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(107,92,174,0.04) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
     }
-
-    /* HAMBURGER */
-    .menu-btn {
-      position: fixed; top: 1.5rem; right: 1.5rem;
-      z-index: 1000;
-      background: none; border: none; cursor: pointer;
-      width: 28px; height: 20px;
+    .logo-img { width: 140px; height: auto; margin-bottom: 0; }
+    .divider {
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, #ccc, transparent);
+      margin: 1.6rem auto;
+    }
+    .hero-tagline {
+      font-size: 0.68rem; font-weight: 300;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: #999;
+    }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem;
       display: flex; flex-direction: column;
-      justify-content: space-between;
-    }
-    .menu-btn span {
-      display: block; width: 100%; height: 2px;
-      background: var(--text); transition: 0.3s;
-    }
-    .menu-btn.open span:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
-    }
-    .menu-btn.open span:nth-child(2) { opacity: 0; }
-    .menu-btn.open span:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* PANEL */
-    .panel {
-      position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
-      background: var(--bg);
-      z-index: 999;
-      overflow-y: auto;
-      transition: right 0.35s ease;
-    }
-    .panel.open { right: 0; }
-    .panel-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 5rem 2rem 3rem;
-    }
-    .panel h2 {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-light);
-      margin-bottom: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .panel h2:first-child { margin-top: 0; }
-    .panel p {
-      font-size: 0.92rem;
-      line-height: 1.7;
-      color: var(--text-mid);
-      margin-bottom: 1rem;
-    }
-    .panel ul {
-      list-style: none;
-      padding: 0;
-    }
-    .panel li {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .panel li:last-child { border-bottom: none; }
-    .panel li strong {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .panel li span {
-      font-size: 0.84rem;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-    .panel .contact-block {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .panel .contact-block a {
-      color: var(--text);
+      align-items: center; gap: 0.5rem; opacity: 0.3;
+      transition: opacity 0.3s; cursor: pointer;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
     }
-    .panel .contact-block a:hover {
-      color: var(--purple);
+    .scroll-hint:hover { opacity: 0.6; }
+    .scroll-hint span {
+      font-size: 0.55rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #999;
+    }
+    .scroll-arrow {
+      width: 1px; height: 24px;
+      background: linear-gradient(180deg, #999, transparent);
+      animation: pulse-down 2s ease-in-out infinite;
+    }
+    @keyframes pulse-down {
+      0%, 100% { opacity: 0.3; transform: translateY(0); }
+      50% { opacity: 0.8; transform: translateY(4px); }
     }
 
-    @media (min-width: 768px) {
-      .panel { width: 480px; right: -480px; }
-      .landing img { width: 220px; }
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      opacity: 0; transition: opacity 0.4s ease;
+      background: rgba(253,253,253,0.9);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .nav.visible { opacity: 1; }
+    .nav-logo {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: #6B5CAE; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: #999; text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #6B5CAE; }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 2rem;
+      max-width: 720px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: #6B5CAE; margin-bottom: 2.5rem;
+    }
+    .section-line {
+      width: 30px; height: 1px;
+      background: linear-gradient(90deg, #6B5CAE, transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* CAPABILITIES */
+    .cap-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem 4rem;
+    }
+    .cap-item h3 {
+      font-size: 0.82rem; font-weight: 500;
+      color: #1a1a2e; margin-bottom: 0.6rem;
+      letter-spacing: 0.02em;
+    }
+    .cap-item p {
+      font-size: 0.78rem; font-weight: 300;
+      color: #777; line-height: 1.7;
+    }
+
+    /* APPROACH */
+    .approach-text {
+      font-size: 0.88rem; font-weight: 300;
+      color: #555; line-height: 1.85;
+      max-width: 560px;
+    }
+    .approach-text + .approach-text { margin-top: 1.5rem; }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 6rem 2rem;
+      max-width: 720px; margin: 0 auto;
+      border-top: 1px solid #eee;
+    }
+    .contact-section .section-label { margin-bottom: 1.5rem; }
+    .contact-section a {
+      font-size: 0.82rem; font-weight: 400;
+      color: #777; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-section a:hover { color: #6B5CAE; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem; text-align: center;
+      font-size: 0.6rem; color: #ccc;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 600px) {
+      .cap-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
-<button class="menu-btn" id="menuBtn" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
-
-<div class="landing">
-  <img src="logo.jpg" alt="LavendrX">
-  <div class="tagline">Healthcare AI Consulting</div>
-  <div class="contact">
-    <a href="mailto:lauren@lavendrx.com">lauren@lavendrx.com</a>
+<div class="nav" id="nav">
+  <a href="#" class="nav-logo">LavendrX</a>
+  <div class="nav-links">
+    <a href="#capabilities">Capabilities</a>
+    <a href="#approach">Approach</a>
+    <a href="#contact">Contact</a>
   </div>
-  <div class="footer-line">&copy; 2026 LavendrX LLC</div>
 </div>
 
-<div class="panel" id="panel">
-  <div class="panel-inner">
+<section class="hero">
+  <div class="hero-glow"></div>
+  <img src="logo.jpg" alt="LavendrX" class="logo-img">
+  <div class="divider"></div>
+  <div class="hero-tagline">Healthcare &middot; AI &middot; Advisory</div>
+  <a href="#capabilities" class="scroll-hint">
+    <span>Learn More</span>
+    <div class="scroll-arrow"></div>
+  </a>
+</section>
 
-    <h2>What We Do</h2>
-    <p>We help research institutions, health systems, and life sciences organizations extract structured insights from clinical data using AI. Our work sits at the intersection of clinical domain expertise and modern language models.</p>
-
-    <h2>Services</h2>
-    <ul>
-      <li>
-        <strong>EMR Data Extraction</strong>
-        <span>Transform unstructured clinical text — physician notes, pathology reports, discharge summaries — into structured, research-ready datasets. Entity recognition, assertion status, relation extraction, and code mapping across major EHR systems.</span>
-      </li>
-      <li>
-        <strong>Chart Review Automation</strong>
-        <span>Automate retrospective chart abstraction at scale. Extract diagnoses, treatment timelines, adverse events, lab values, and clinical endpoints from free-text documentation while maintaining research-grade accuracy.</span>
-      </li>
-      <li>
-        <strong>Patient-Reported Outcomes</strong>
-        <span>Design and deploy digital ePRO collection using validated instruments. Automated patient engagement, adaptive survey logic, longitudinal tracking, and EHR integration.</span>
-      </li>
-      <li>
-        <strong>Real-World Evidence</strong>
-        <span>Regulatory-grade RWE from EHR, claims, and registry data. De-identified data pipelines with full audit trails for observational studies, post-market surveillance, and value-based care reporting.</span>
-      </li>
-      <li>
-        <strong>Data Engineering and Compliance</strong>
-        <span>HIPAA-compliant data infrastructure. ETL pipelines, clinical data warehousing, automated PHI de-identification. Full audit-ready data lineage for IRB and regulatory review.</span>
-      </li>
-      <li>
-        <strong>AI Strategy</strong>
-        <span>Assess organizational readiness, identify high-impact use cases, and develop phased implementation roadmaps for responsible AI adoption in clinical and research settings.</span>
-      </li>
-    </ul>
-
-    <h2>Use Cases</h2>
-    <ul>
-      <li>
-        <strong>Registry Data Abstraction</strong>
-        <span>Automated extraction for clinical registries. AI that reasons across documentation the way a trained abstractor does — reconciling conflicting notes, interpreting temporal relationships, applying clinical judgment.</span>
-      </li>
-      <li>
-        <strong>Cohort Identification</strong>
-        <span>AI-powered screening of EHR data against eligibility criteria. Identify eligible patients across unstructured notes, lab values, medication histories, and imaging results.</span>
-      </li>
-      <li>
-        <strong>Clinical Documentation Improvement</strong>
-        <span>NLP-driven analysis of physician documentation for completeness, specificity, and coding accuracy.</span>
-      </li>
-      <li>
-        <strong>Quality Measures</strong>
-        <span>Automate extraction of quality measure data from clinical records. Map documentation to eCQM specifications and generate submission-ready datasets.</span>
-      </li>
-      <li>
-        <strong>Prior Authorization Intelligence</strong>
-        <span>Decode insurance denial patterns, generate evidence-based appeal documentation, and identify prior authorization bottlenecks across payer-drug-diagnosis combinations.</span>
-      </li>
-    </ul>
-
-    <h2>Who We Work With</h2>
-    <p>Academic medical centers, research institutions, health systems, specialty practices, pharmaceutical and biotech companies, clinical research organizations, payers, and digital health companies.</p>
-
-    <h2>Approach</h2>
-    <p>Discovery and assessment. Solution design. Build and validate against clinician-reviewed ground truth. Deploy within your infrastructure or a compliant managed environment. We report precision, recall, and inter-annotator agreement. No black boxes.</p>
-
-    <div class="contact-block">
-      <a href="mailto:lauren@lavendrx.com">lauren@lavendrx.com</a>
+<section id="capabilities">
+  <div class="section-label">Capabilities</div>
+  <div class="section-line"></div>
+  <div class="cap-grid">
+    <div class="cap-item">
+      <h3>AI Strategy and Implementation</h3>
+      <p>Organizational readiness assessment, use case identification, and phased implementation roadmaps for AI adoption across clinical and operational settings.</p>
     </div>
-
+    <div class="cap-item">
+      <h3>Clinical Data Intelligence</h3>
+      <p>Structured data extraction from unstructured clinical text. Entity recognition, relation extraction, and code mapping across EHR systems and medical documentation.</p>
+    </div>
+    <div class="cap-item">
+      <h3>Workflow Automation</h3>
+      <p>Intelligent automation for chart review, prior authorization, clinical documentation improvement, and administrative processes that consume clinician time.</p>
+    </div>
+    <div class="cap-item">
+      <h3>Patient-Reported Outcomes</h3>
+      <p>Digital ePRO collection platforms using validated instruments, adaptive survey logic, longitudinal tracking, and integration with existing clinical infrastructure.</p>
+    </div>
+    <div class="cap-item">
+      <h3>Real-World Evidence</h3>
+      <p>Data pipelines for observational studies, post-market surveillance, and value-based care reporting. De-identified datasets with audit-ready lineage.</p>
+    </div>
+    <div class="cap-item">
+      <h3>Compliance and Data Engineering</h3>
+      <p>HIPAA-compliant infrastructure, automated PHI de-identification, clinical data warehousing, and audit-ready pipelines for regulatory and IRB review.</p>
+    </div>
   </div>
+</section>
+
+<section id="approach">
+  <div class="section-label">Approach</div>
+  <div class="section-line"></div>
+  <p class="approach-text">We work at the intersection of clinical domain expertise and modern AI. Our recommendations are technology-agnostic and driven by what works for your organization, not by what we sell.</p>
+  <p class="approach-text">Every engagement starts with understanding your data, your workflows, and your objectives. We validate against clinician-reviewed ground truth. We report precision and recall. No black boxes.</p>
+  <p class="approach-text">We work with academic medical centers, research institutions, health systems, specialty practices, pharmaceutical and life sciences companies, payers, and digital health organizations.</p>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="section-label">Contact</div>
+  <a href="mailto:lauren@lavendrx.com">lauren@lavendrx.com</a>
 </div>
+
+<footer>
+  &copy; 2026 LavendrX LLC
+</footer>
 
 <script>
-  const btn = document.getElementById('menuBtn');
-  const panel = document.getElementById('panel');
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('open');
-    panel.classList.toggle('open');
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.7);
   });
 </script>
 
